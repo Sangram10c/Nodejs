@@ -13,6 +13,7 @@ const server = http.createServer((req, res) => {
     const log = `${new Date()} ${req.url}\n`;
     if (req.url === '/favicon.ico') {
         res.writeHead(204);
+        
         res.end();
         return;
     }
