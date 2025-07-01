@@ -1,0 +1,17 @@
+function now() { [native code] },undefined,undefined,undefinedfunction now() { [native code] },undefined,undefined,undefined
+ function now() { [native code] } undefined undefined undefined
+ function now() { [native code] } undefined undefined undefined
+ 1751355072212: undefined undefined undefined
+ 1751355238917: ::ffff:127.0.0.1 GET /api/users/1003
+ 1751355255747: ::ffff:127.0.0.1 GET /api/users/1003
+ 1751355322807: ::ffff:127.0.0.1 GET /api/users/1003
+ 1751355347411: ::ffff:127.0.0.1 GET /api/users/1003
+ 1751355373977: ::ffff:127.0.0.1 GET /api/users/1003
+ 1751355381188: ::ffff:127.0.0.1 GET /api/users
+ 1751355408922: [object Object] GET /api/users
+ 1751355462984: undefined GET /api/users
+ 1751355483539: undefined GET /api/users
+ 1751355492337:  GET /api/users
+ 1751355624919: ::ffff:127.0.0.1 GET /api/users
+ 1751360828642: ::ffff:127.0.0.1 GET /api/users
+ 1751360857933: ::ffff:127.0.0.1 GET /api/users
