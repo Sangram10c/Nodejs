@@ -5,13 +5,16 @@
   "license": "ISC",
   "author": "",
   "type": "commonjs",
-  "main": "index.js",
+  "main": " index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon Example/RESTApi.js"
   },
   "dependencies": {
     "express": "^5.1.0",
+    "mongoos": "^0.0.1-security",
     "node": "^24.2.0",
+    "nodemon": "^3.1.10",
     "url": "^0.11.4"
   }
 }
