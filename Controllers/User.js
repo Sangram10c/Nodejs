@@ -1,4 +1,9 @@
+const app = require('express')();
 const User = require('../Model/data');
+
+const path = require('path');
+// 
+
 
 async function getAllUsers(req, res) {
     const allusers = await User.find({});
@@ -8,7 +13,8 @@ async function getAllUsers(req, res) {
             `<li>${user.first_name} ${user.last_name} :  ${user.Job_title}</li>`
         ).join('')}
         </ul>`;
-    return res.send(JSON.stringify(allusers));
+    // return res.send(JSON.stringify(allusers));
+    return res.render('User', { users: allusers });
 }
 
 async function getUserById(req, res) {
