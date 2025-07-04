@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>Find User</title>
+</head>
+<body>
+    <h2>Find User</h2>
+    
+    <form method="GET" action="/api/user">
+        <input type="text" name="search" placeholder="Search by user name" value="<%= typeof search !== 'undefined' ? search : '' %>">
+        <button type="submit">Search</button>
+    </form>
+
+    <%
+        let filteredUsers = users;
+        if (typeof search !== 'undefined' && search.trim() !== '') {
+            filteredUsers = users.filter(user =>
+                user.first_name.toLowerCase().includes(search.toLowerCase()) ||
+                user.last_name.toLowerCase().includes(search.toLowerCase())
+            );
+        }
+    %>
+
+    <% if (filteredUsers && filteredUsers.length > 0) { %>
+        <table border="1" cellpadding="5" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% filteredUsers.forEach(function(user) { %>
+                    <tr>
+                        <td><%= user.first_name %></td>
+                        <td><%= user.last_name %></td>
+                        <td><%= user.email %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p>No users found.</p>
+    <% } %>
+</body>
+</html>

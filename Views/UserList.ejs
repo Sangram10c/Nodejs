@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User List</title>
+</head>
+<body>
+    <h2>All Users</h2>
+     <div>
+    <% let filteredUsers = users; %>
+       <% if (filteredUsers && filteredUsers.length > 0) { %>
+        <table border="1">
+            <tr>
+                <th>First</th>
+                <th>Last</th>
+                <th>Job</th>
+                <th>Email</th>
+                <th>Gender</th>
+            </tr>
+            <% filteredUsers.forEach((user) => { %>
+                <tr>
+                    <td><%= user.first_name %></td>
+                    <td><%= user.last_name %></td>
+                    <td><%= user.Job_title %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.gender %></td>
+                </tr>
+            <% }); %>
+        </table>
+    <% } else { %>
+        <p>No users found.</p>
+    <% } %>
+    </div>
+</body>
+</html>

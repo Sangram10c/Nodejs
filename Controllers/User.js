@@ -1,8 +1,12 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
 const User = require('../Model/data');
 
+// Add middleware to parse JSON and URL-encoded bodies
+app.use(express.json());
+app.use(express.urlencoded({ extended: false })); // set extended to false for simpler parsing
+
 const path = require('path');
-// 
 
 
 async function getAllUsers(req, res) {
@@ -14,7 +18,9 @@ async function getAllUsers(req, res) {
         ).join('')}
         </ul>`;
     // return res.send(JSON.stringify(allusers));
-    return res.render('User', { users: allusers });
+    // return res.render('User', { users: allusers });
+    return res.render('UserList', { users: allusers });
+
 }
 
 async function getUserById(req, res) {
@@ -23,6 +29,22 @@ async function getUserById(req, res) {
         return res.status(404).json({ error: "User not found" });
     }
     return res.json(users);
+}
+async function getUserByName(req, res) {
+    const name = req.query.search || req.query.name; // Use 'search' or 'name' query parameter
+    if (!name) {
+        return res.status(400).json({ error: "Name query parameter is required" });
+    }
+    // Search by first_name or last_name (case-insensitive)
+    const users = await User.find({
+        $or: [
+            { first_name: { $regex: name, $options: 'i' } }
+        ]
+    });
+    if (!users.length) {
+        return res.status(404).json({ error: "No users found with that name" });
+    }
+    return res.render('FindUser', { users });
 }
 
 async function createUser(req, res) {
@@ -37,7 +59,8 @@ async function createUser(req, res) {
         email: body.email,
         gender: body.gender
     });
-    return res.status(201).json({ status: "User Created Successfully", });
+    // return res.status(201).json({ status: "User Created Successfully", });
+    return res.render('CreateUser', { status: "User Created Successfully" });
 }
 
 async function deleteUser(req, res) {
@@ -70,5 +93,6 @@ module.exports = {
     getUserById,
     createUser,
     deleteUser,
-    updateUser
+    updateUser,
+    getUserByName
 };
