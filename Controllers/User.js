@@ -8,6 +8,7 @@ app.use(express.urlencoded({ extended: false })); // set extended to false for s
 
 const path = require('path');
 
+
 async function getAllUsers(req, res) {
 
     
