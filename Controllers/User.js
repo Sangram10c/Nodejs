@@ -10,6 +10,7 @@ const path = require('path');
 
 
 async function getAllUsers(req, res) {
+    
     const allusers = await User.find({});
     const html =
         `<ul>
