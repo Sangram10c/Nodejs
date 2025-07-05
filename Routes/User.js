@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 
-const { getAllUsers, getUserById, updateUser, deleteUser, createUser, getUserByName } = require('../Controllers/User');
+const { getAllUsers, getUserById, updateUser, deleteUser, createUser, getUserByName , LoginUser} = require('../Controllers/User');
 // Get all users
 router.route('/api/users')
     .get(getAllUsers);
@@ -17,5 +17,8 @@ router.route('/api/user/:id')
 
 router.route('/api/user')
     .get(getUserByName);
+
+    router.route('/api/login')
+    .post(LoginUser);
 
 module.exports = router;

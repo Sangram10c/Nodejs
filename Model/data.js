@@ -21,7 +21,11 @@ const userSchema = new mongoose.Schema({
     Job_title: {
         type: String,
         required: true
-    }
+    },
+    password: {
+        type: String,
+        required: true
+    },
 });
 
 userSchema.set('timestamps', true);// Automatically adds createdAt and updatedAt fields

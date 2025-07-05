@@ -18,4 +18,8 @@ router.get('/FindUser', async (req, res) => {
     const allusers = await User.find({});
     res.render("FindUser", { users: allusers });
 });
+
+router.get('/Login', (req, res) => {
+    res.render("Login", { status: "Welcome to Login Page" });
+});
 module.exports = router;

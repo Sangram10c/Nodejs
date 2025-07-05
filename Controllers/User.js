@@ -49,7 +49,7 @@ async function getUserByName(req, res) {
 
 async function createUser(req, res) {
     const body = req.body;
-    if (!body.first_name || !body.last_name || !body.Job_title || !body.email || !body.gender) {
+    if (!body.first_name || !body.last_name || !body.Job_title || !body.email || !body.gender || !body.password) {
         return res.status(400).json({ error: "All fields are required" });
     }
     await User.create({
@@ -57,11 +57,24 @@ async function createUser(req, res) {
         last_name: body.last_name,
         Job_title: body.Job_title,
         email: body.email,
-        gender: body.gender
+        gender: body.gender,
+        password: body.password
     });
     // return res.status(201).json({ status: "User Created Successfully", });
     return res.render('CreateUser', { status: "User Created Successfully" });
 }
+async function LoginUser(req, res) {
+    const body = req.body;
+    if (!body.email || !body.password) {
+        return res.status(400).json({ error: "Email and password are required" });
+    }
+    const user = await User.findOne({ email: body.email, password: body.password });
+    if (!user) {
+        return res.status(401).json({ error: "Invalid email or password" });
+    }
+    return res.json({ status: "Login successful", user });
+    // return res.render('Login', { status: "Login successful", user: user });
+}   
 
 async function deleteUser(req, res) {
     const body = req.body;
@@ -94,5 +107,6 @@ module.exports = {
     createUser,
     deleteUser,
     updateUser,
-    getUserByName
+    getUserByName,
+    LoginUser
 };
