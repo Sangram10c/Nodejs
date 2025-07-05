@@ -13,6 +13,7 @@ async function getAllUsers(req, res) {
 
     
     const allusers = await User.find({});
+    
     const html =
         `<ul>
         ${allusers.map((user) =>
