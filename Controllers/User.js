@@ -11,9 +11,9 @@ const path = require('path');
 
 async function getAllUsers(req, res) {
 
-    
+
     const allusers = await User.find({});
-    
+
     const html =
         `<ul>
         ${allusers.map((user) =>
@@ -91,6 +91,7 @@ async function updateUser(req, res) {
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             email: req.body.email,
+            
             gender: req.body.gender,
             Job_title: req.body.Job_title
         },
