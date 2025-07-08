@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const User = require('../Model/data');
+const setUser = require('../Service/auth').setUser;
+const { v4: uuidv4 } = require('uuid'); // Import uuidv4
 
 // Add middleware to parse JSON and URL-encoded bodies
 app.use(express.json());
@@ -11,8 +13,8 @@ const path = require('path');
 
 async function getAllUsers(req, res) {
 
-    
-    
+
+
     const allusers = await User.find({});
 
     const html =
@@ -76,9 +78,15 @@ async function LoginUser(req, res) {
     if (!user) {
         return res.status(401).json({ error: "Invalid email or password" });
     }
-    return res.json({ status: "Login successful", user });
+    const sessionId = uuidv4();
+    setUser(sessionId, user);
+    res.cookie("uid", sessionId);
+    return res.redirect("/");
+    // return res.json({ status: "Login successful", user });
+
+
     // return res.render('Login', { status: "Login successful", user: user });
-}   
+}
 
 async function deleteUser(req, res) {
     const body = req.body;
@@ -92,7 +100,7 @@ async function updateUser(req, res) {
             first_name: req.body.first_name,
             last_name: req.body.last_name,
             email: req.body.email,
-            
+
             gender: req.body.gender,
             Job_title: req.body.Job_title
         },
