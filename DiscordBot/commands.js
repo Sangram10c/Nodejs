@@ -10,7 +10,7 @@ const commands = [
     },
 ];
 
-const rest = new REST({ version: '10' }).setToken('');
+const rest = new REST({ version: '10' }).setToken('  ');
 (async () => {
     try {
         console.log('Started refreshing application (/) commands.');

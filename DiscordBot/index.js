@@ -25,6 +25,7 @@ mongoose.connection.on('disconnected', () => {
 });
 // User schema
 const userSchema = new mongoose.Schema({
+    
     name: String,
     email: String,
     mobile: String,
