@@ -10,6 +10,8 @@ const staticRoute = require('./Routes/staticRoute');
 const cookieParser = require('cookie-parser');
 const { restrictToLoggedinUserOnly, checkAuth } = require('./Middlewares/auth');
 const urlRouter = require('./Routes/Url');
+const FileUpload = require('./Routes/FileUpload');
+
 
 app.set('view engine', 'ejs');
 app.set('views', path.resolve('./Views'));
@@ -24,12 +26,7 @@ app.use(express.urlencoded({ extended: false })); // set extended to false for s
 app.use("/url", restrictToLoggedinUserOnly, urlRouter);
 app.use("/user", userRouter);
 app.use("/", checkAuth, staticRoute);
-
-app.use(userRouter);
-app.use("/", staticRoute);
-
-
-
+app.use("/", FileUpload);
 
 
 app.listen(PORT, () => console.log("Server start at port 5000"));

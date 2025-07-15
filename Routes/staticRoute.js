@@ -22,4 +22,7 @@ router.get('/FindUser', async (req, res) => {
 router.get('/Login', (req, res) => {
     res.render("Login", { status: "Welcome to Login Page" });
 });
+router.get('/upload', (req, res) => {
+    res.render("FileUpload", { status: "Welcome to File Upload Page" });
+});
 module.exports = router;
